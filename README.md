@@ -195,14 +195,3 @@ To add features:
 - [ ] Real-time analytics streaming
 - [ ] Docker containerization
 
-## 📞 Support
-
-For issues or questions about the web app component, refer to `web-app/README.md` or check the application logs.
-
-## 📄 License
-
-This project is for educational and business analysis purposes.
-
-**Last Updated:** April 2026
-**Version:** 1.0.0
----
