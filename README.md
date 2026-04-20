@@ -1,192 +1,197 @@
-#  Prism Insurance Dashboard – Power BI Project
+# Prism Insurance Analysis
 
-## 📊 Dashboard Link
+A comprehensive insurance data analysis project combining Power BI dashboards and a full-stack web application for insights and predictions.
 
-*(https://app.powerbi.com/links/2ZlAM1wYDC?ctid=0ecde1b1-6118-4880-9c6b-491c76d96b71&pbi_source=linkShare&bookmarkGuid=12c470a4-f08f-49eb-939c-03682c70668e)*
+## 📁 Project Structure
 
----
-
-## 📌 Problem Statement
-
-This dashboard helps the insurance company better understand its customers, policies, and claims behavior. It enables stakeholders to analyze policy distribution, claim trends, and customer demographics effectively.
-
-Through this dashboard, the company can:
-
-* Identify high-claim areas and risky customer segments
-* Monitor total premium vs. claims ratio
-* Understand customer distribution by age, gender, and policy type
-* Improve decision-making for pricing and risk management
-
----
-
-## ⚙️ Steps Followed
-
-### 🔹 Data Preparation
-
-* Loaded dataset into Power BI Desktop (CSV/Excel format including policy, customer, and claims data)
-* Opened Power Query Editor and enabled:
-
-  * Column Distribution
-  * Column Quality
-  * Column Profile
-* Set profiling to **“Based on entire dataset”**
-
-### 🔹 Data Cleaning
-
-* Handled missing/null values (e.g., Claim Amount, Premium)
-* Removed duplicate records
-* Ensured correct data types (Date, Currency, Whole Number, etc.)
-
-### 🔹 Data Modeling
-
-* Created relationships between tables:
-
-  * Customers
-  * Policies
-  * Claims
-
-### 🔹 Report Design
-
-* Applied a suitable theme
-* Added slicers for:
-
-  * Policy Type
-  * Gender
-  * Region / Location
-  * Claim Status
-
----
-
-## 📈 Key Metrics (KPIs)
-
-Created card visuals for:
-
-* **Total Customers**
-* **Total Policies**
-* **Total Premium Collected**
-* **Total Claims Amount**
-
----
-
-## 📊 Visualizations
-
-* Claims by Policy Type (Bar Chart)
-* Customers by Age Group (Column Chart)
-* Premium by Region
-* Claim Status Distribution (Approved / Rejected / Pending)
-* Monthly Claims Trend
-* Policy Type Comparison
-
----
-
-## 🧮 Calculations
-
-### 🔸 Age Group (Calculated Column)
-
-```DAX
-Age Group = 
-IF(Insurance[Age] <= 25, "0-25",
-IF(Insurance[Age] <= 50, "25-50",
-IF(Insurance[Age] <= 75, "50-75",
-"75+")))
+```
+Prism_Insurance_Analysis/
+│
+├── powerbi/                     # Power BI Dashboards (Friend's work)
+│   └── Insurance Project.pbix   # Power BI project file
+│
+├── web-app/                     # Full-stack Web Application
+│   ├── frontend/                # React/HTML/CSS/JS frontend
+│   │   ├── index.html
+│   │   ├── style.css
+│   │   └── script.js
+│   │
+│   ├── backend/                 # Flask Python backend
+│   │   ├── app.py              # Main Flask application
+│   │   ├── utils.py            # Utility functions
+│   │   └── model.pkl           # ML model (optional)
+│   │
+│   ├── data/                    # Sample datasets
+│   │   └── sample.csv
+│   │
+│   └── README.md                # Web app documentation
+│
+├── README.md                    # This file
+├── requirements.txt             # Python dependencies
+└── .gitignore                   # Git ignore rules
 ```
 
-### 🔸 Measures
+## 🎯 Overview
 
-**Total Customers**
+### Power BI Component
+- Interactive dashboards for insurance data visualization
+- Created and maintained by project collaborators
+- Located in `powerbi/` directory
 
-```DAX
-Total Customers = COUNT(Insurance[CustomerID])
+### Web Application Component
+A complete full-stack application for insurance analysis:
+
+**Frontend:**
+- Modern HTML/CSS interface
+- File upload functionality
+- Real-time analysis display
+- Responsive design
+
+**Backend:**
+- Flask REST API
+- CSV data processing
+- Machine learning predictions
+- Statistical analysis
+- CORS enabled for cross-origin requests
+
+## 🚀 Quick Start
+
+### 1. Activate Virtual Environment
+
+**Windows (PowerShell):**
+```powershell
+venv\Scripts\Activate.ps1
 ```
 
-**Total Premium**
-
-```DAX
-Total Premium = SUM(Insurance[Premium Amount])
+**Windows (Command Prompt):**
+```cmd
+venv\Scripts\activate.bat
 ```
 
-**Total Claims**
-
-```DAX
-Total Claims = SUM(Insurance[Claim Amount])
+**Mac/Linux:**
+```bash
+source venv/bin/activate
 ```
 
-**Claim Ratio (%)**
+### 2. Install Dependencies
 
-```DAX
-Claim Ratio = DIVIDE([Total Claims], [Total Premium]) * 100
+```bash
+pip install -r requirements.txt
 ```
 
----
+### 3. Start Backend Server
 
-## 🖼️ Dashboard Snapshots
+Open a terminal and run:
+```bash
+python web-app/backend/app.py
+```
 
+The API will start on: `http://localhost:5000`
 
-*(https://github.com/user-attachments/assets/d222d92d-d304-4d96-a8cb-923da64163b8")*
+Keep this terminal running!
 
----
+### 4. Start Frontend Server
 
-## 🔍 Insights
+Open a **new terminal** and run:
+```bash
+python -m http.server 8000
+```
 
-### 📌 [1] Overall Metrics
+Then visit: `http://localhost:8000/web-app/frontend/`
 
-* **Total Customers** 
-* **Total Policies** 
-* **Total Premium Collected** 
-* **Total Claims** 
+### 5. Use the Application
 
-### 📌 [2] Claims Analysis
+Once loaded, you'll see **two main tabs:**
 
-* Claim ratio shows how much premium is paid out as claims
-* High claim ratio may indicate a risk-heavy portfolio
-* Certain policy types show higher claim frequency
+#### 📊 Dashboard Tab
+- View embedded Power BI report
+- Interactive insurance analytics dashboard
+- Real-time visualizations
 
-### 📌 [3] Customer Distribution
+#### 🔍 Analyze Data Tab
+- Upload CSV files with insurance data
+- View statistical analysis
+- Get ML predictions
+- Download results
 
-* Majority of customers belong to: *(add age group)*
-* Gender distribution insight: *(add insight)*
-* Region-wise distribution highlights key customer hubs
+## 📊 Features
 
-### 📌 [4] Policy Insights
+- ✅ Embedded Power BI Dashboard - View insurance analytics and KPIs
+- ✅ CSV File Upload - Import insurance data for analysis
+- ✅ Statistical Analysis - Get insights from uploaded datasets
+- ✅ Machine Learning Predictions - ML-powered forecasting
+- ✅ RESTful API - Backend API for data processing
+- ✅ Responsive Web Interface - Works on desktop and mobile
+- ✅ Real-time Results - Instant analysis feedback
 
-* Most popular policy type: *(add value)*
-* Least preferred policy type: *(add value)*
-* Some policies generate significantly higher revenue
+## 🔌 API Endpoints
 
-### 📌 [5] Risk & Business Insights
+- `GET /` - API status check
+- `POST /api/analyze` - Analyze uploaded CSV file
+- `GET /api/health` - Health check with model status
 
-* High-claim regions require further investigation
-* Certain customer segments show frequent claims
-* Useful for improving underwriting and pricing strategies
+## 📋 Technology Stack
 
----
+**Frontend:**
+- HTML5, CSS3, JavaScript
+- Responsive design with modern UI
 
-## ✅ Conclusion
+**Backend:**
+- Flask 3.0.0
+- pandas 2.1.0+
+- scikit-learn 1.4.0+
+- NumPy 1.26.0+
 
-This Power BI dashboard provides a comprehensive overview of insurance operations, enabling stakeholders to:
+**Integration:**
+- Power BI Embedded
+- CORS enabled
 
-* Monitor business performance
-* Identify and reduce risks
-* Improve profitability
-* Enhance customer targeting and segmentation
+## 🗂️ Sample Data Format
 
----
+The application accepts CSV files with insurance data:
 
-## 🚀 Future Enhancements
+```csv
+age,premium,coverage_type,risk_score,claims_count
+25,500,Basic,0.3,0
+35,750,Standard,0.5,1
+45,1200,Premium,0.7,2
+```
 
-* Add predictive analytics for claim forecasting
-* Integrate real-time data sources
-* Drill-through pages for detailed analysis
-* Advanced segmentation using AI visuals
+Sample data available in `web-app/data/sample.csv`
 
----
+## 🤝 Contributing
 
-## 📎 Author
+This is a collaborative project:
 
-*(Yash Gundewadi)*
+- **Power BI**: Handled by project collaborators
+- **Web App**: Your contribution area
 
-*LinkedIn:- (www.linkedin.com/in/yash-gundewadi-9b852b320)*
+To add features:
 
-*Portfolio:- (https://github.com/yash-gundewadi)*
+1. Create a feature branch
+2. Make your changes
+3. Submit a pull request
 
----
+## 📝 Documentation
+
+- Web app details: See `web-app/README.md`
+- API documentation: Check `web-app/backend/app.py` docstrings
+- Dependencies: See `requirements.txt`
+
+## 🔐 Security
+
+- CORS enabled for development
+- Input validation on file uploads
+- Error handling for malformed data
+- Environment variables support via `.env`
+
+## ⚙️ Future Enhancements
+
+- [ ] Database integration (PostgreSQL)
+- [ ] Advanced ML model training
+- [ ] User authentication system
+- [ ] Data visualization dashboard
+- [ ] Mobile application
+- [ ] Real-time analytics streaming
+- [ ] Docker containerization
+
